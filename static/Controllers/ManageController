@@ -1,0 +1,129 @@
+mainApp.controller('ManageController', function ($scope, Upload, $location, $localStorage, $routeParams, CRUDService) {
+    $scope.passEqualError = false;
+    $scope.passShortError = false;
+    $scope.CurrentEditorProductId = "";
+    if($scope.isConnect == false)
+    {
+        $location.path("/Index");
+    }
+    $scope.GetUserDetails = function() {
+            CRUDService.GetUserDetails($localStorage.currentUser["username"]).then(
+            function success(response) {
+                $scope.currentUserId = response.data["id"];
+                $scope.currentUserName = response.data["username"];
+                $scope.currentUserFirstName = response.data["first_name"];
+                $scope.currentUserLastName = response.data["last_name"];
+                $scope.currentUserPassword = response.data["password"];
+                $scope.currentUserPasswordAgain = response.data["password"];
+            },
+            function error(response) {
+            }
+        );
+    }
+    $scope.GetAllProducts = function() {
+            CRUDService.GetAllProducts().then(
+            function success(response) {
+               $scope.products = response.data;
+               if($scope.products.length > 0)
+               {
+                   $scope.CurrentEditorProductId = $scope.products[0].id;
+                   $scope.CurrentEditorProductName = $scope.products[0].name;
+                   $scope.CurrentEditorProductContent = $scope.products[0].content;
+                   $scope.CurrentEditorPicFile = $scope.products[0].photo_src;
+               }
+            },
+            function error(response) {
+            }
+        );
+    }
+    $scope.UpdateUserDetails = function() {
+        if($scope.ValidateUserDetails()){
+            CRUDService.UpdateUserDetails($scope.currentUserName, $scope.currentUserPassword, $scope.currentUserId).then(
+            function success(response) {
+                if(response.data["success"] == true){
+                    $localStorage.currentUser["username"] = $scope.currentUserName;
+                    location.reload();
+                }
+
+            },
+            function error(response) {
+            })
+        }
+    }
+    $scope.ValidateUserDetails = function() {
+        if($scope.currentUserPassword != $scope.currentUserPasswordAgain)
+        {
+            $scope.passEqualError = true;
+            return false;
+        }
+        if($scope.currentUserPassword.length < 6)
+        {
+            $scope.passShortError = true;
+            return false;
+        }
+        if($scope.currentUserName.length < 6)
+        {
+            $scope.usernameShortError = true;
+            return false;
+        }
+        return true;
+    }
+    $scope.ValidateInputLength = function(fields, minLength) {
+        fields.forEach(function(field){
+            if(field.length < minLength)
+            {
+                return false;
+            }
+        });
+        return true;
+    }
+    $scope.LoadSelectedProductData = function(){
+          $scope.products.forEach(function(product){
+                if(product.id == $scope.CurrentEditorProductId)
+                {
+                    $scope.CurrentEditorProductContent = product.content;
+                    $scope.CurrentEditorPicFile = product.photo_src;
+                }
+            });
+    }
+    $scope.AddContentPage = function(){
+        if ($scope.ValidateInputLength([$scope.NewContentPageName, $scope.NewPageContent], 1))
+        {
+            CRUDService.AddContentPage($scope.NewContentPageName, $scope.NewPageContent, $scope.NewContentPageImageFile).then(
+                function success(response) {
+                location.reload();
+                },
+                function error(response) {
+                })
+        }
+    };
+    $scope.AddProduct = function(){
+        if ($scope.ValidateInputLength([$scope.NewProductName, $scope.NewProductContent], 1))
+        {
+            CRUDService.AddProduct($scope.NewProductName, $scope.NewProductContent, $scope.NewProductImageFile).then(
+                function success(response) {
+                location.reload();
+                },
+                function error(response) {
+                })
+        }
+    };
+    $scope.UpdateProduct = function(){
+        CRUDService.UpdateProduct($scope.CurrentEditorProductId, $scope.CurrentEditorProductContent, $scope.CurrentEditorPicFile).then(
+            function success(response) {
+            location.reload();
+            },
+            function error(response) {
+            })
+    };
+    $scope.DeleteProduct = function(){
+        CRUDService.DeleteProduct($scope.CurrentEditorProductId).then(
+            function success(response) {
+            location.reload();
+            },
+            function error(response) {
+            })
+    };
+    $scope.GetAllProducts();
+    $scope.GetUserDetails();
+});

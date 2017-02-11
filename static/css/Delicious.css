@@ -1,0 +1,63 @@
+html, body {
+    width: calc(100%);
+
+    height: calc(100%);
+}
+
+.del-navbar li {
+    float:right;
+}
+
+.del-footer {
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-top:5px;
+    direction:ltr;
+}
+
+.del-body {
+    direction:rtl;
+}
+
+.del-top-number {
+    direction:ltr;
+}
+
+.del-col-sm {
+    float:right;
+}
+
+option:empty
+{
+    display:none;
+}
+
+.del-manage-container
+{
+    width:100%;
+    background-image:url("../images/slider/bg1.jpg");
+}
+
+.del-panel
+{
+    width:45%;
+    margin-right:2%;
+    margin-left:5%;
+}
+
+.del-manage-panels
+{
+    display:flex;
+}
+
+.del-action-buttons a
+{
+    margin-left:1%;
+}
+
+.del-dropdown-button
+{
+    background-color:#c52d2f;
+}

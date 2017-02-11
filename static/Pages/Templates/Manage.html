@@ -1,0 +1,146 @@
+<div class="container del-manage-container">
+    <div id="boxes" style="margin-top:50px;" class="del-manage-panels">
+        <div class="panel panel-info del-panel" >
+                <div class="panel-heading">
+                    <div class="panel-title">עדכון פרטים איישים</div>
+                </div>
+                <div style="padding-top:30px" class="panel-body" >
+                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                    <form id="loginform" class="form-horizontal" role="form" ng-submit="Login()">
+                        <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input id="login-username" type="text" class="form-control" name="username" ng-model="currentUserName" value="" placeholder="שם משתמש">
+                                </div>
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <input id="login-password" type="text" class="form-control" name="password" ng-model="currentUserPassword" placeholder="סיסמא">
+                                </div>
+                        <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <input id="login-password2" type="text" class="form-control" name="password" ng-model="currentUserPasswordAgain" placeholder="הקש את הסיסמא שוב">
+                                </div>
+                        <div ng-if="passerror" class="help-block">
+                            <div>Passwords not equal</div>
+                        </div>
+                            <div style="margin-top:10px" class="form-group">
+                                <!-- Button -->
+
+                                <div class="col-sm-12 controls">
+                                  <a id="btn-login" class="btn btn-success" ng-click="UpdateUserDetails()">עדכן</a>
+                                </div>
+                                <div ng-if="passEqualError" class="alert alert-danger">הסיסמאות אינן זהות</div>
+                                <div ng-if="passShortError" class="alert alert-danger">הסיסמא שנבחרה קצרה מדי - מינימום 6 תווים</div>
+                                <div ng-if="usernameShortError" class="alert alert-danger">שם המשתמש קצר מדי - מינימום 6 תווים</div>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        <div class="panel panel-info del-panel" >
+                <div class="panel-heading">
+                    <div class="panel-title">ערוך מוצר</div>
+                </div>
+                <div style="padding-top:30px" class="panel-body" >
+                    <div style="display:none" id="edit-product-alert" class="alert alert-danger col-sm-12"></div>
+                    <form id="edit-product-form" name="updateProductForm" class="form-horizontal" role="form">
+                        <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                    <select name="product" class="form-control" ng-model="CurrentEditorProductId" ng-change="LoadSelectedProductData()">
+                                        <option ng-repeat="product in products"  selected="selected" value={{product.id}}>{{product.name}}</option>
+                                    </select>
+                        </div>
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-bullhorn"></i></span>
+                            <textarea id="product-content" class="form-control" ng-model="CurrentEditorProductContent" placeholder="תוכן המוצר"></textarea>
+                        </div>
+                          <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                    <input id="upload-image" type="file" ngf-select ngf-max-size="20MB" ng-model="CurrentEditorPicFile" name="file" accept="image/*" ngf-max-size="2MB" class="form-control">
+                                </div>
+                         <i ng-show="updateProductForm.file.$error.maxSize">File too large
+                            {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                        <div ng-if="passerror" class="help-block">
+                            <div>Passwords not equal</div>
+                        </div>
+                            <div style="margin-top:10px" class="form-group">
+                                <!-- Button -->
+
+                                <div class="col-sm-12 controls del-action-buttons">
+                                  <a id="update-product-button" class="btn btn-success" ng-click="UpdateProduct()">עדכן</a>
+                                  <a id="delete-product-button" class="btn btn-danger" ng-click="DeleteProduct()">מחק</a>
+                                </div>
+                                <div ng-if="passEqualError" class="alert alert-danger">הסיסמאות אינן זהות</div>
+                                <div ng-if="passShortError" class="alert alert-danger">הסיסמא שנבחרה קצרה מדי - מינימום 6 תווים</div>
+                                <div ng-if="usernameShortError" class="alert alert-danger">שם המשתמש קצר מדי - מינימום 6 תווים</div>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    <div id="boxes-2" style="margin-top:50px;" class="del-manage-panels">
+        <div class="panel panel-info del-panel" >
+                <div class="panel-heading">
+                    <div class="panel-title">הוסף מוצר</div>
+                </div>
+                <div style="padding-top:30px" class="panel-body" >
+                    <div style="display:none" id="add-product-alert" class="alert alert-danger col-sm-12"></div>
+                    <form id="addproductform" class="form-horizontal" role="form">
+                        <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                    <input id="new-product-name" type="text" class="form-control" name="added-product-name" ng-model="NewProductName" value="" placeholder="שם המוצר">
+                                </div>
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-bullhorn"></i></span>
+                                    <textarea id="new-product-content" class="form-control" ng-model="NewProductContent" placeholder="תוכן המוצר"></textarea>
+                                </div>
+                         <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                    <input id="added-product-image-file" type="file" ngf-select ngf-max-size="20MB" ng-model="NewProductImageFile" name="file" accept="image/*" ngf-max-size="2MB" class="form-control">
+                                </div>
+                         <i ng-show="updateProductForm.file.$error.maxSize">File too large
+                            {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                            <div style="margin-top:10px" class="form-group">
+                                <!-- Button -->
+
+                                <div class="col-Ssm-12 controls">
+                                  <a id="btn-add-product" class="btn btn-success" ng-click="AddProduct()">הוסף</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        <div class="panel panel-info del-panel" >
+                <div class="panel-heading">
+                    <div class="panel-title">הוסף דף תוכן</div>
+                </div>
+                <div style="padding-top:30px" class="panel-body" >
+                    <div style="display:none" id="add-content-page-alert" class="alert alert-danger col-sm-12"></div>
+                    <form id="addcontentpage" class="form-horizontal" role="form">
+                        <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                    <input id="new-content-page-name" type="text" class="form-control" name="added-content-page-name" ng-model="NewContentPageName" value="" placeholder="שם הדף">
+                                </div>
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-bullhorn"></i></span>
+                                    <textarea id="new-content-page-content" class="form-control" ng-model="NewPageContent" placeholder="תוכן הדף"></textarea>
+                                </div>
+                         <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                    <input id="added-content-page-image-file" type="file" ngf-select ngf-max-size="20MB" ng-model="NewContentPageImageFile" name="file" accept="image/*" ngf-max-size="2MB" class="form-control">
+                                </div>
+                         <i ng-show="updateProductForm.file.$error.maxSize">File too large
+                            {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                            <div style="margin-top:10px" class="form-group">
+                                <!-- Button -->
+
+                                <div class="col-Ssm-12 controls">
+                                  <a id="btn-add-content-page" class="btn btn-success" ng-click="AddContentPage()">הוסף</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>

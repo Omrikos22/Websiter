@@ -1,0 +1,12 @@
+mainApp.controller('GenericContentPageController', function ($scope, $routeParams, CRUDService) {
+      $scope.GetAllProducts = function() {
+           CRUDService.GetAllProducts().then(
+            function success(response) {
+                $scope.products = response.data.reverse();
+            },
+            function error(response) {
+            }
+        );
+      }
+      $scope.GetAllProducts()
+});

@@ -1,0 +1,37 @@
+mainApp.controller('LoginController', function ($scope, $location, CRUDService) {
+    $scope.submitted = false;
+    $scope.error = false;
+    $scope.usererror = false;
+    $scope.passerror = false;
+    $scope.username = null;
+    $scope.password = null;
+    $scope.Login = function () {
+        $scope.loading = true;
+        if($scope.username == null){
+            $scope.usererror = true;
+            return;
+        }
+        if($scope.password == null){
+            $scope.passerror = true;
+            return;
+        }
+        CRUDService.Login($scope.username, $scope.password).then(
+            function success(response) {
+                $scope.submitted = true;
+                $scope.usererror = false;
+                $scope.passerror = false;
+                if(response.data["is_auth"] != false){
+                    $location.path('/Index')
+                }
+                else {
+                $scope.usererror = false;
+                $scope.passerror = false;
+                $scope.submitted = true;
+                $scope.error = true;
+                }
+            },
+            function error(response) {
+            }
+        );
+    }
+});

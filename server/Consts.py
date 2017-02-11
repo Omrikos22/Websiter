@@ -1,0 +1,12 @@
+GET_CONTENT_PAGES_QUERY = "Select * from ContentPages"
+GET_PRODUCTS_QUERY = "Select * from Products"
+LOGIN_QUERY = "Select * from Users where username='{0}' and password='{1}'"
+GET_USER_DETAILS_QUERY = "Select * from Users where username='{0}'"
+UPDATE_USER_DETAILS_QUERY = "UPDATE Users SET username='{0}', password='{1}' WHERE Id='{2}'"
+INSERT_CONTENT_PAGE_QUERY = "INSERT INTO contentpages (PageName, PageContent, HtmlPath, PhotoPath) VALUES ('{0}', " \
+                            "'{1}', '{2}', '{3}) "
+INSERT_PRODUCT_DETAILS_QUERY = "INSERT INTO Products (Name, PhotoPath, Content) VALUES ('{0}', '{1}', '{2}')"
+UPDATE_PRODUCT_DETAILS_QUERY = "UPDATE Products SET Content='{0}', PhotoPath='{1}' WHERE Id='{2}'"
+DELETE_PRODUCT_QUERY = "DELETE FROM Products WHERE Id='{0}'"
+PRODUCTS_IMAGE_ROOT_DIR = r"static\images\products"
+CONTENT_PAGES_ROOT_PATH = "#/pages/"
