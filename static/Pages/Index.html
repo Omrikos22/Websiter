@@ -73,14 +73,10 @@
                             <li class="active"><a href='#/Index'>דף הבית</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle del-dropdown-button">המוצרים שלנו <i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="blog-item.html">Blog Single</a></li>
-                                    <li><a href="pricing.html">Pricing</a></li>
-                                    <li><a href="404.html">404</a></li>
-                                    <li><a href="shortcodes.html">Shortcodes</a></li>
+                                <ul class="dropdown-menu del-products-dropdown">
+                                    <li ng-repeat="product in products"><a href='#/product/{{product.id}}'>{{product.name}}</a></li>
                                 </ul>
                             </li>
-                            <li class="active"><a href='#/Products'>המוצרים שלנו</a></li>
                             <li class="active" ng-repeat="page in pages"><a href={{page.path}}>{{page.name}}</a></li>
                             <li class="active" ng-if="!isConnect"><a href='#/Login'>התחברות</a></li>
                             <li class="active" ng-if="isConnect"><a href='#/Manage'>ניהול</a></li>
@@ -103,6 +99,7 @@
             </nav><!--/nav-->
 
         </header><!--/header-->
+          <div style="background-image: url(static/images/slider/bg1.jpg)">
         <ng-view>
 <!--
         <section id="main-slider" class="no-margin">
@@ -769,6 +766,7 @@
             </div>
         </section><!--/#bottom-->
 </ng-view>
+              </div>
         <footer id="footer" class="midnight-blue del-footer">
             <div class="container">
                 <div class="row">
@@ -806,6 +804,7 @@
         <script src="static/controllers/GenericContentPageController"></script>
         <script src="static/controllers/LoginController"></script>
         <script src="static/controllers/ManageController"></script>
+        <script src="static/controllers/ProductViewController"></script>
         <script src="static/services/CRUDService.js"></script>
     </body>
     </html>

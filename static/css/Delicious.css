@@ -9,7 +9,7 @@ html, body {
 }
 
 .del-footer {
-    position: relative;
+    position: static;
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -60,4 +60,26 @@ option:empty
 .del-dropdown-button
 {
     background-color:#c52d2f;
+}
+
+.del-products-dropdown {
+    text-align:right;
+}
+
+.del-products-dropdown li{
+    width:100%;
+    direction:rtl;
+}
+
+.del-clearfix {
+    margin-right:0px;
+    margin-left:0px;
+}
+
+.del-product-div {
+    background-color:#f2f2f2;
+}
+
+.del-feature {
+    background-image: url(static/images/slider/bg1.jpg);
 }

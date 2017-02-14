@@ -22,6 +22,10 @@ mainApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'static/Pages/Templates/GenericContentPage.HTML',
         controller: 'GenericContentPageController'
     })
+    .when('/product/:id', {
+        templateUrl: 'static/Pages/Templates/ProductView.HTML',
+        controller: 'ProductViewController'
+    })
     .otherwise({
         redirectTo: '/Index'
     });

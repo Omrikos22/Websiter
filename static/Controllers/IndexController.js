@@ -23,4 +23,22 @@
             }
         );
     }
+    $scope.GetAllProducts = function() {
+            CRUDService.GetAllProducts().then(
+            function success(response) {
+               $scope.products = response.data;
+               if($scope.products.length > 0)
+               {
+                   $scope.CurrentEditorProductId = $scope.products[0].id;
+                   $scope.CurrentEditorProductName = $scope.products[0].name;
+                   $scope.CurrentEditorProductContent = $scope.products[0].content;
+                   $scope.CurrentEditorPicFile = $scope.products[0].photo_src;
+               }
+            },
+            function error(response) {
+            }
+        );
+    }
+    $scope.GetPages();
+    $scope.GetAllProducts();
 });
