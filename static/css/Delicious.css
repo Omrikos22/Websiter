@@ -82,4 +82,40 @@ option:empty
 
 .del-feature {
     background-image: url(static/images/slider/bg1.jpg);
+    height:inherit;
+}
+
+.del-product-pic {
+    margin-top:1%;
+    margin-bottom:1%;
+    margin-left:3%;
+    border:1px solid black;
+    border-radius:15px;
+    float:left;
+    width:30%;
+    height:60%;
+}
+
+.del-product-area{
+    margin-right:0px;
+    margin-left:0px;
+    height:inherit;
+}
+
+.del-product-content{
+    width:50%;
+    margin-right:5%;
+    margin-top:12%;
+    margin-left:5%;
+    float:right;
+    border:1px solid black;
+    border-radius:15px;
+}
+
+.del-content-subject{
+    padding:5px;
+}
+
+.del-ng-view{
+    height:inherit;
 }

@@ -99,8 +99,8 @@
             </nav><!--/nav-->
 
         </header><!--/header-->
-          <div style="background-image: url(static/images/slider/bg1.jpg)">
-        <ng-view>
+          <div style="background-image: url(static/images/slider/bg1.jpg);background-repeat:no-repeat">
+        <ng-view class="del-ng-view">
 <!--
         <section id="main-slider" class="no-margin">
             <div class="carousel slide">
@@ -804,7 +804,7 @@
         <script src="static/controllers/GenericContentPageController"></script>
         <script src="static/controllers/LoginController"></script>
         <script src="static/controllers/ManageController"></script>
-        <script src="static/controllers/ProductViewController"></script>
+        <script src="static/controllers/ProductViewController.js"></script>
         <script src="static/services/CRUDService.js"></script>
     </body>
     </html>

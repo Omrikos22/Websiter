@@ -1,4 +1,5 @@
 ﻿mainApp.controller('IndexController', function ($scope, $rootScope, $localStorage, $location, CRUDService) {
+    $scope.productsImagesRootDir = "static/images/products/";
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
             if (!$localStorage.currentUser) {
                 $scope.isConnect = false;
