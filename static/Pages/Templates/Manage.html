@@ -45,13 +45,13 @@
                     <form id="edit-product-form" name="updateProductForm" class="form-horizontal" role="form">
                         <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
-                                    <select name="product" class="form-control" ng-model="CurrentEditorProductId" ng-change="LoadSelectedProductData()">
-                                        <option ng-repeat="product in products"  selected="selected" value={{product.id}}>{{product.name}}</option>
+                                        <select name="product" class="form-control" ng-model="currentEditorProductName" ng-change="LoadSelectedProductData()">
+                                        <option ng-repeat="product in products"  selected="selected">{{product.name}}</option>
                                     </select>
                         </div>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-bullhorn"></i></span>
-                            <textarea id="product-content" class="form-control" ng-model="CurrentEditorProductContent" placeholder="תוכן המוצר"></textarea>
+                            <textarea id="product-content" class="form-control" ng-model="currentEditorProductContent" placeholder="תוכן המוצר"></textarea>
                         </div>
                           <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>

@@ -15,15 +15,15 @@ class MysqlAdapter:
         self.conn = pymysql.connect(host=self.host, user=self.user, password=self.password, db=self.db, charset='utf8')
         self.cur = self.conn.cursor()
 
-    def execute_query(self, query, commit=False):
+    def execute_query(self, query):
         results = []
         try:
             self.cur.execute(query)
-            if commit:
-                self.conn.autocommit(1)
+            self.conn.commit()
             for row in self.cur.fetchall():
                 results.append(row)
         except Exception as e:
             self.connect()
             self.cur.execute(query)
+            self.conn.commit()
         return results

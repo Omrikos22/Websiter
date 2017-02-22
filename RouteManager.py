@@ -99,11 +99,15 @@ class Routes:
     def update_product():
         product_id = request.form["id"]
         product_content = request.form["content"].encode('utf-8')
-        image_file = request.files['image']
-        image_filename = image_file.filename
         try:
-            RequestHandlerUtils().upload_image(image_file)
-            db.execute_query(UPDATE_PRODUCT_DETAILS_QUERY.format(product_content, image_filename, product_id))
+            if not request.files.__contains__('image'):
+                image = request.form['image']
+                db.execute_query(UPDATE_PRODUCT_DETAILS_QUERY.format(product_content, image, product_id))
+            else:
+                image_file = request.files['image']
+                image_filename = image_file.filename
+                RequestHandlerUtils().upload_image(image_file)
+                db.execute_query(UPDATE_PRODUCT_DETAILS_QUERY.format(product_content, image_filename, product_id))
             return json.dumps({"success": True})
         except:
             return json.dumps({"success": False})
@@ -112,7 +116,7 @@ class Routes:
     def delete_product():
         product_id = request.args["id"]
         try:
-            db.execute_query(DELETE_PRODUCT_QUERY.format(product_id), commit=True)
+            db.execute_query(DELETE_PRODUCT_QUERY.format(product_id))
             return json.dumps({"success": True})
         except:
             return json.dumps({"success": False})
