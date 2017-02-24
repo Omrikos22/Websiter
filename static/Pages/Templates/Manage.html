@@ -55,7 +55,7 @@
                         </div>
                           <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
-                                    <input id="upload-image" type="file" ngf-select ngf-max-size="20MB" ng-model="CurrentEditorPicFile" name="file" accept="image/*" ngf-max-size="2MB" class="form-control">
+                                    <input id="upload-image" type="file" ngf-select ngf-max-size="20MB" ng-model="currentEditorPicFile" name="file" accept="image/*" ngf-max-size="2MB" class="form-control">
                                 </div>
                          <i ng-show="updateProductForm.file.$error.maxSize">File too large
                             {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
@@ -143,4 +143,43 @@
                     </div>
             </div>
         </div>
-    </div>
+    <div id="boxes-3" style="margin-top:50px;" class="del-manage-panels">
+        <div class="panel panel-info del-panel" >
+                <div class="panel-heading">
+                    <div class="panel-title">ערוך דף תוכן</div>
+                </div>
+                <div style="padding-top:30px" class="panel-body" >
+                    <div style="display:none" id="edit-content-page-alert" class="alert alert-danger col-sm-12"></div>
+                    <form id="edit-content-page-form" name="updateProductForm" class="form-horizontal" role="form">
+                        <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                        <select name="product" class="form-control" ng-model="currentEditorContentPageName" ng-change="LoadSelectedContentPageData()">
+                                        <option ng-repeat="page in pages"  selected="selected">{{page.name}}</option>
+                                    </select>
+                        </div>
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-bullhorn"></i></span>
+                            <textarea id="edit-page-content" class="form-control" ng-model="currentEditorContentPageContent" placeholder="תוכן המוצר"></textarea>
+                        </div>
+                          <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                    <input id="edit-page-upload-image" type="file" ngf-select ngf-max-size="20MB" ng-model="currentEditorContentPagePicFile" name="file" accept="image/*" ngf-max-size="2MB" class="form-control">
+                                </div>
+                         <i ng-show="updateProductForm.file.$error.maxSize">File too large
+                            {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                        <div ng-if="passerror" class="help-block">
+                            <div>Passwords not equal</div>
+                        </div>
+                            <div style="margin-top:10px" class="form-group">
+                                <!-- Button -->
+
+                                <div class="col-sm-12 controls del-action-buttons">
+                                  <a id="update-content-page-button" class="btn btn-success" ng-click="UpdatePageContent()">עדכן</a>
+                                  <a id="delete-content=page-button" class="btn btn-danger" ng-click="DeletePageContent()">מחק</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+</div>

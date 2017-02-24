@@ -10,8 +10,9 @@ from Fooder.server.Models.Page import Page
 from Fooder.server.Models.User import User
 from Fooder.server.Utils.RequestsHandlerUtils import RequestHandlerUtils
 from Fooder.server.Consts import GET_CONTENT_PAGES_QUERY, GET_PRODUCTS_QUERY, LOGIN_QUERY, GET_USER_DETAILS_QUERY,\
-    UPDATE_USER_DETAILS_QUERY, UPDATE_PRODUCT_DETAILS_QUERY, DELETE_PRODUCT_QUERY, INSERT_PRODUCT_DETAILS_QUERY, CONTENT_PAGES_ROOT_PATH, \
-    INSERT_CONTENT_PAGE_QUERY
+    UPDATE_USER_DETAILS_QUERY, UPDATE_PRODUCT_QUERY, DELETE_PRODUCT_QUERY, INSERT_PRODUCT_QUERY, CONTENT_PAGES_ROOT_PATH, \
+    INSERT_CONTENT_PAGE_QUERY, TRANSLATE_RESULTS_INDEX, TRANSLATE_SPECIFIC_RESULT_INDEX, TRANSLATED_WORD_INDEX, \
+    UPDATE_CONTENT_PAGE_QUERY, DELETE_PAGE_CONTENT_QUERY, CONTENT_PAGE_TYPE_STRING
 
 app = Flask(__name__)
 db = MysqlAdapter("localhost", "root", "", "Fooder")
@@ -68,16 +69,19 @@ class Routes:
 
     @staticmethod
     def add_content_page():
-        page_name = request.form["name"]
-        page_name_english = translator('iw', 'en', page_name)
+        page_name = request.form["name"].encode('utf-8')
+        page_name_english = translator('iw', 'en', page_name)[TRANSLATE_RESULTS_INDEX][TRANSLATE_SPECIFIC_RESULT_INDEX][TRANSLATED_WORD_INDEX]
         page_content = request.form["content"].encode('utf-8')
         page_path = CONTENT_PAGES_ROOT_PATH + page_name_english
-        image_file = request.files['image']
-        image_filename = image_file.filename
         try:
-            RequestHandlerUtils().upload_image(image_file)
-            db.execute_query(INSERT_CONTENT_PAGE_QUERY.format(page_name, page_content, page_path, image_filename),
-                             commit=True)
+            if not request.files.__contains__('image'):
+                image = request.form['image']
+                db.execute_query(INSERT_CONTENT_PAGE_QUERY.format(page_name, page_content, page_path, image))
+            else:
+                image_file = request.files['image']
+                image_filename = image_file.filename
+                RequestHandlerUtils().upload_image(image_file, img_type=CONTENT_PAGE_TYPE_STRING)
+                db.execute_query(INSERT_CONTENT_PAGE_QUERY.format(page_name, page_content, page_path, image_filename))
             return json.dumps({"success": True})
         except Exception as e:
             return json.dumps({"success": False})
@@ -86,11 +90,15 @@ class Routes:
     def add_product():
         product_name = request.form["name"].encode('utf-8')
         product_content = request.form["content"].encode('utf-8')
-        image_file = request.files['image']
-        image_filename = image_file.filename
         try:
-            RequestHandlerUtils().upload_image(image_file)
-            db.execute_query(INSERT_PRODUCT_DETAILS_QUERY.format(product_name, product_content, image_filename), commit=True)
+            if not request.files.__contains__('image'):
+                image = request.form['image']
+                db.execute_query(INSERT_PRODUCT_QUERY.format(product_name, product_content, image))
+            else:
+                image_file = request.files['image']
+                image_filename = image_file.filename
+                RequestHandlerUtils().upload_image(image_file)
+                db.execute_query(INSERT_PRODUCT_QUERY.format(product_name, product_content, image_filename))
             return json.dumps({"success": True})
         except Exception as e:
             return json.dumps({"success": False})
@@ -102,12 +110,29 @@ class Routes:
         try:
             if not request.files.__contains__('image'):
                 image = request.form['image']
-                db.execute_query(UPDATE_PRODUCT_DETAILS_QUERY.format(product_content, image, product_id))
+                db.execute_query(UPDATE_PRODUCT_QUERY.format(product_content, image, product_id))
             else:
                 image_file = request.files['image']
                 image_filename = image_file.filename
                 RequestHandlerUtils().upload_image(image_file)
-                db.execute_query(UPDATE_PRODUCT_DETAILS_QUERY.format(product_content, image_filename, product_id))
+                db.execute_query(UPDATE_PRODUCT_QUERY.format(product_content, image_filename, product_id))
+            return json.dumps({"success": True})
+        except:
+            return json.dumps({"success": False})
+
+    @staticmethod
+    def update_page_content():
+        page_id = request.form["id"]
+        page_content = request.form["content"].encode('utf-8')
+        try:
+            if not request.files.__contains__('image'):
+                image = request.form['image']
+                db.execute_query(UPDATE_CONTENT_PAGE_QUERY.format(page_content, image, page_id))
+            else:
+                image_file = request.files['image']
+                image_filename = image_file.filename
+                RequestHandlerUtils().upload_image(image_file)
+                db.execute_query(UPDATE_CONTENT_PAGE_QUERY.format(page_content, image_filename, page_id))
             return json.dumps({"success": True})
         except:
             return json.dumps({"success": False})
@@ -117,6 +142,15 @@ class Routes:
         product_id = request.args["id"]
         try:
             db.execute_query(DELETE_PRODUCT_QUERY.format(product_id))
+            return json.dumps({"success": True})
+        except:
+            return json.dumps({"success": False})
+
+    @staticmethod
+    def delete_page_content():
+        page_content_id = request.args["id"]
+        try:
+            db.execute_query(DELETE_PAGE_CONTENT_QUERY.format(page_content_id))
             return json.dumps({"success": True})
         except:
             return json.dumps({"success": False})
@@ -131,6 +165,8 @@ def run_server(port):
     app.add_url_rule('/UpdateUserDetails', view_func=Routes().update_user_details, methods=['POST'])
     app.add_url_rule('/AddContentPage', view_func=Routes().add_content_page, methods=['POST'])
     app.add_url_rule('/AddProduct', view_func=Routes().add_product, methods=['POST'])
+    app.add_url_rule('/UpdatePageContent', view_func=Routes().update_page_content, methods=['POST'])
     app.add_url_rule('/UpdateProduct', view_func=Routes().update_product, methods=['POST'])
     app.add_url_rule('/DeleteProduct', view_func=Routes().delete_product, methods=['POST'])
+    app.add_url_rule('/DeletePageContent', view_func=Routes().delete_page_content, methods=['POST'])
     app.run(host="0.0.0.0", port=port)

@@ -105,9 +105,37 @@ mainApp.factory('CRUDService', function ($http, Upload, $q, $localStorage) {
             });
             return deferred.promise;
         },
+        UpdatePageContent: function (page_id, page_content, page_image) {
+            var deferred = $q.defer();
+            var fd = new FormData()
+            fd.append('file', page_image)
+            $http({method: 'POST', headers: {'Content-Type': undefined}, url:'/UpdatePageContent', data: {"id": page_id, "content": page_content, "image": page_image}, transformRequest: function (data, headersGetter, page_image) {
+                        var formData = new FormData();
+                        angular.forEach(data, function (value, key) {
+                            formData.append(key, value);
+                        });
+                        return formData;
+                    }}).then(
+            function success(data, status, headers, config) {
+                deferred.resolve(data, status, headers, config);
+            }, function error(data, status, headers, config) {
+                deferred.reject(data, status, headers, config);
+            });
+            return deferred.promise;
+        },
         DeleteProduct: function (id) {
             var deferred = $q.defer();
             $http({method: 'POST', url:'/DeleteProduct', params: {"id": id}}).then(
+            function success(data, status, headers, config) {
+                deferred.resolve(data, status, headers, config);
+            }, function error(data, status, headers, config) {
+                deferred.reject(data, status, headers, config);
+            });
+            return deferred.promise;
+        },
+        DeletePageContent: function (id) {
+            var deferred = $q.defer();
+            $http({method: 'POST', url:'/DeletePageContent', params: {"id": id}}).then(
             function success(data, status, headers, config) {
                 deferred.resolve(data, status, headers, config);
             }, function error(data, status, headers, config) {

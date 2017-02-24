@@ -37,7 +37,6 @@ option:empty
 .del-manage-container
 {
     width:100%;
-    background-image:url("../images/slider/bg1.jpg");
 }
 
 .del-panel
@@ -69,6 +68,10 @@ option:empty
 .del-products-dropdown li{
     width:100%;
     direction:rtl;
+}
+
+.del-products-dropdown li:not(:focus){
+    background:black;
 }
 
 .del-clearfix {
@@ -112,6 +115,16 @@ option:empty
     border-radius:15px;
 }
 
+.del-page-content{
+    width:50%;
+    margin-right:25%;
+    margin-top:5%;
+    margin-left:25%;
+    float:right;
+    border:1px solid black;
+    border-radius:15px;
+}
+
 .del-content-subject{
     padding:5px;
 }
@@ -119,3 +132,15 @@ option:empty
 .del-ng-view{
     height:inherit;
 }
+
+.del-content-slider {
+    margin-top:20%;
+    float:right;
+}
+
+.del-slider-img
+{
+    float:left;
+    margin-left:10%;
+}
+

@@ -6,7 +6,13 @@ mainApp.controller('ProductViewController', function ($scope, $localStorage, $ro
                 {
                     $scope.productName = product.name;
                     $scope.productContent = product.content;
-                    $scope.productPic = $scope.productsImagesRootDir + product.photo_src;
+                    if(product.photo_src == "undefined"){
+                        $scope.productPic = $scope.noImagePhoto;
+                    }
+                    else
+                    {
+                        $scope.productPic = $scope.productsImagesRootDir + product.photo_src;
+                    }
                 }
             });
       }

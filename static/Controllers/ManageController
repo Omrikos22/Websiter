@@ -71,6 +71,16 @@ mainApp.controller('ManageController', function ($scope, Upload, $location, $loc
                 }
             });
     }
+    $scope.LoadSelectedContentPageData = function(){
+          $scope.pages.forEach(function(page){
+                if($scope.currentEditorContentPageName == page.name)
+                {
+                    $scope.currentEditorContentPageId = page.id;
+                    $scope.currentEditorContentPageContent = page.content;
+                    $scope.currentEditorContentPagePicFile = page.photo_src;
+                }
+            });
+    }
     $scope.AddContentPage = function(){
         if ($scope.ValidateInputLength([$scope.NewContentPageName, $scope.NewPageContent], 1))
         {
@@ -93,9 +103,16 @@ mainApp.controller('ManageController', function ($scope, Upload, $location, $loc
                 })
         }
     };
-    //TODO: Cannot put in NewPageContent variable the new content
     $scope.UpdateProduct = function(){
         CRUDService.UpdateProduct($scope.currentEditorProductId, $scope.currentEditorProductContent, $scope.currentEditorPicFile).then(
+            function success(response) {
+            location.reload();
+            },
+            function error(response) {
+            })
+    };
+    $scope.UpdatePageContent = function(){
+        CRUDService.UpdatePageContent($scope.currentEditorContentPageId, $scope.currentEditorContentPageContent, $scope.currentEditorContentPagePicFile).then(
             function success(response) {
             location.reload();
             },
@@ -110,22 +127,15 @@ mainApp.controller('ManageController', function ($scope, Upload, $location, $loc
             function error(response) {
             })
     };
-    $scope.GetAllProducts = function() {
-            CRUDService.GetAllProducts().then(
+    $scope.DeletePageContent = function(){
+        CRUDService.DeletePageContent($scope.currentEditorContentPageId).then(
             function success(response) {
-               $scope.products = response.data;
-               if($scope.products.length > 0)
-               {
-                   $scope.currentEditorProductId = $scope.products[$scope.products.length - 1].id;
-                   $scope.currentEditorProductName = $scope.products[$scope.products.length - 1].name;
-                   $scope.currentEditorProductContent = $scope.products[$scope.products.length - 1].content;
-                   $scope.currentEditorPicFile = $scope.products[$scope.products.length - 1].photo_src;
-               }
+            location.reload();
             },
             function error(response) {
-            }
-        );
-    }
-    $scope.GetAllProducts();
+            })
+    };
+    $scope.GetProducts();
+    $scope.GetPages();
     $scope.GetUserDetails();
 });

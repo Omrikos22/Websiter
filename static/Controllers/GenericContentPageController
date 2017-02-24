@@ -3,7 +3,15 @@
             $scope.pages.forEach(function(page){
                 if(page.path == window.location.hash)
                 {
-                    $scope.CurrentPage = page;
+                    $scope.currentPageName = page.name;
+                    $scope.currentPageContent = page.content;
+                    if(page.photo == "undefined"){
+                        $scope.pagePic = $scope.noImagePhoto;
+                    }
+                    else
+                    {
+                        $scope.pagePic = $scope.contentPagesImageRootDIr + page.photo;
+                    }
                 }
             });
       }
