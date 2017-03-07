@@ -2,29 +2,12 @@
     $scope.productsImagesRootDir = "static/images/products/";
     $scope.contentPagesImageRootDir = "static/images/pages/";
     $scope.noImagePhoto = "static/images/noImg/NoPhoto.png";
-    $scope.currentIndex = 0;
-    $scope.myInterval = 30;
     $scope.slides = [
-            {image: 'static/images/slider/img1.png'},
-            {image: 'static/images/slider/img2.png'},
-            {image: 'static/images/slider/img3.png'}
-        ];
-    $scope.setCurrentSlideIndex = function (index) {
-        $scope.currentIndex = index;
-    };
-    $scope.isCurrentSlideIndex = function (index) {
-        return $scope.currentIndex === index;
-    };
-    $scope.prevSlide = function () {
-        $scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
-    };
-    $scope.nextSlide = function () {
-        $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
-    };
-     $scope.slides = [
-            {image: 'static/images/slider/img1.png', description: 'Image 00'},
-            {image: 'static/images/slider/img2.png', description: 'Image 02'},
-            {image: 'static/images/slider/img3.png', description: 'Image 03'}
+            {src: 'static/images/slider/drink_machine.jpg'},
+            {src: 'static/images/slider/hot_pizza.jpg'},
+            {src: 'static/images/slider/pancake.jpg'},
+            {src: 'static/images/slider/pancake_in_made.jpg'},
+            {src: 'static/images/slider/sahlav.jpg'}
         ];
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {

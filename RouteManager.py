@@ -80,7 +80,7 @@ class Routes:
             else:
                 image_file = request.files['image']
                 image_filename = image_file.filename
-                RequestHandlerUtils().upload_image(image_file, img_type=CONTENT_PAGE_TYPE_STRING)
+                RequestHandlerUtils().upload_image(image_file, type)
                 db.execute_query(INSERT_CONTENT_PAGE_QUERY.format(page_name, page_content, page_path, image_filename))
             return json.dumps({"success": True})
         except Exception as e:

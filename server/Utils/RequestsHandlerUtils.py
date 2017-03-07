@@ -1,5 +1,5 @@
 import os
-from Fooder.server.Consts import PRODUCTS_IMAGE_ROOT_DIR, CONTENT_PAGES_IMAGE_ROOT_DIR, CONTENT_PAGE_TYPE_STRING
+from server.Consts import PRODUCTS_IMAGE_ROOT_DIR, CONTENT_PAGES_IMAGE_ROOT_DIR, CONTENT_PAGE_TYPE_STRING
 
 
 class RequestHandlerUtils:

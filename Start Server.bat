@@ -1,2 +1,2 @@
 @echo off
-Scripts\activate.bat & Main.py & pause
+Scripts\activate.bat & Main.py & pauseM

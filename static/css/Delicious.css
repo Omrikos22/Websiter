@@ -144,3 +144,25 @@ option:empty
     margin-left:10%;
 }
 
+md-card {
+  direction:ltr;
+  margin-left:5%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  margin-bottom: 20px;
+  box-shadow:none !important;
+  background-color:transparent;
+}
+
+.del-jk-carousel {
+    margin-left:5%;
+}
+
+.del-main-panel {
+    margin-top:3%;
+}
+
+.del-md-card {
+    padding-bottom:10px;
+}

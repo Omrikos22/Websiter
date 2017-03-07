@@ -1,29 +1,23 @@
-<!--<section id="main-slider">
-    <div class="container slider">
-        <div class="col-sm-6 del-content-slider">
-            <div class="carousel-content">
-                <h1 class="animation animated-item-1">השכרת מוצרים לארועים אצל אברומי</h1>
-                <h2 class="animation animated-item-2">דפדו במוצרינו והתרשמו</h2>
-            </div>
-        </div>
-<div class="image-slider-container">
-        <img ng-repeat="slide in slides" class="slide slide-animation animate-repeat img-responsive"
-             ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
-</div>
-        <a class="prev hidden-xs" href="#" ng-click="nextSlide()">
-                <i class="fa fa-chevron-left"></i>
-            </a>
-            <a class="next hidden-xs" href="#"  ng-click="prevSlide()">
-                <i class="fa fa-chevron-right"></i>
-            </a>
-    </div>
-</section>-->
- <div>
-      <carousel interval="myInterval">
-        <slide ng-repeat="slide in slides" active="slide.active">
-          <img class="del-slider-img" ng-src="{{slide.image}}">
-        </slide>
-      </carousel>
-    </div>
+<div class="col-md-4 del-main-panel">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2>אברומי</h2>
+					</div>
+					<div class="panel-body">
+						<p>{{Content}}</p>
+					</div>
+				</div>
+			</div>
+  <md-card layout="column" class="del-md-card">
+          <jk-carousel class="del-jk-carousel"
+            data="slides"
+            item-template-url="'static/Pages/Templates/item-template.html'"
+            max-width="600"
+            max-height="500"
+            auto-slide="true"
+            auto-slide-time="2000" >
+            </jk-carousel>
+
+  </md-card>
 
 
