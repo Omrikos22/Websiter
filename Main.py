@@ -1,4 +1,4 @@
-from Fooder.RouteManager import *
+from RouteManager import *
 
 
 def main():

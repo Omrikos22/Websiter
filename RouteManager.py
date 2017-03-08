@@ -3,13 +3,13 @@ import json
 from flask import Flask
 from flask import request
 from uuid import uuid4
-from Fooder.server.Models.Product import Product
-from Fooder.server.MysqlAdapter import MysqlAdapter
+from server.Models.Product import Product
+from server.MysqlAdapter import MysqlAdapter
 from flask import send_file
-from Fooder.server.Models.Page import Page
-from Fooder.server.Models.User import User
-from Fooder.server.Utils.RequestsHandlerUtils import RequestHandlerUtils
-from Fooder.server.Consts import GET_CONTENT_PAGES_QUERY, GET_PRODUCTS_QUERY, LOGIN_QUERY, GET_USER_DETAILS_QUERY,\
+from server.Models.Page import Page
+from server.Models.User import User
+from server.Utils.RequestsHandlerUtils import RequestHandlerUtils
+from server.Consts import GET_CONTENT_PAGES_QUERY, GET_PRODUCTS_QUERY, LOGIN_QUERY, GET_USER_DETAILS_QUERY,\
     UPDATE_USER_DETAILS_QUERY, UPDATE_PRODUCT_QUERY, DELETE_PRODUCT_QUERY, INSERT_PRODUCT_QUERY, CONTENT_PAGES_ROOT_PATH, \
     INSERT_CONTENT_PAGE_QUERY, TRANSLATE_RESULTS_INDEX, TRANSLATE_SPECIFIC_RESULT_INDEX, TRANSLATED_WORD_INDEX, \
     UPDATE_CONTENT_PAGE_QUERY, DELETE_PAGE_CONTENT_QUERY, CONTENT_PAGE_TYPE_STRING
