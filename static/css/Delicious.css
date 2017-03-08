@@ -5,7 +5,7 @@ html, body {
 }
 
 .del-navbar li {
-
+    float:right;
 }
 
 .del-footer {
