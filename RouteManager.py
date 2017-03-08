@@ -15,7 +15,7 @@ from server.Consts import GET_CONTENT_PAGES_QUERY, GET_PRODUCTS_QUERY, LOGIN_QUE
     UPDATE_CONTENT_PAGE_QUERY, DELETE_PAGE_CONTENT_QUERY, CONTENT_PAGE_TYPE_STRING
 
 app = Flask(__name__)
-db = MysqlAdapter("localhost", "root", "", "Fooder")
+db = MysqlAdapter("localhost", "root", "Omrikos22", "Fooder")
 
 
 class Routes:
