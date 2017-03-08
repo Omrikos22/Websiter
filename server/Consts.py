@@ -10,8 +10,8 @@ INSERT_PRODUCT_QUERY = "INSERT INTO products (Name, Content, PhotoPath) VALUES (
 UPDATE_PRODUCT_QUERY = "UPDATE products SET Content='{0}', PhotoPath='{1}' WHERE Id='{2}'"
 DELETE_PRODUCT_QUERY = "DELETE FROM products WHERE Id='{0}'"
 DELETE_PAGE_CONTENT_QUERY = "DELETE FROM contentpages WHERE Id='{0}'"
-PRODUCTS_IMAGE_ROOT_DIR = r"static\images\products"
-CONTENT_PAGES_IMAGE_ROOT_DIR = r"static\images\pages"
+PRODUCTS_IMAGE_ROOT_DIR = r"static/images/products"
+CONTENT_PAGES_IMAGE_ROOT_DIR = r"static/images/pages"
 CONTENT_PAGES_ROOT_PATH = "#/pages/"
 TRANSLATE_RESULTS_INDEX = 0
 TRANSLATE_SPECIFIC_RESULT_INDEX = 0
