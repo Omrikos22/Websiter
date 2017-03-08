@@ -96,7 +96,8 @@ a:focus {
 }
 
 .dropdown-menu {
-  min-width: 50px;
+  margin-top: -1px;
+  min-width: 180px;
 }
 
 .center h2{
