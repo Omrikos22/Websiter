@@ -25,7 +25,7 @@ class Routes:
 
     @staticmethod
     def index():
-        return send_file('static/Pages/Index.HTML')
+        return send_file('static/Pages/Index.html')
 
     @staticmethod
     def get_content_pages():
