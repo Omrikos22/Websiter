@@ -4,6 +4,10 @@ html, body {
     height: calc(100%);
 }
 
+.del-navbar {
+    display:table-caption;
+}
+
 .del-navbar li {
     float:right;
 }
