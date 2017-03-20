@@ -73,17 +73,17 @@
 
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav del-navbar" >
-                            <li class="active"><a href='#/Index'>דף הבית</a></li>
+                            <li class=""><a href='#/Index'>דף הבית</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle del-dropdown-button">המוצרים שלנו <i class="fa fa-angle-down"></i></a>
+                                <a href="#" class="dropdown-toggle">המוצרים שלנו <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu del-products-dropdown">
                                     <li ng-repeat="product in products"><a href='#/product/{{product.id}}'>{{product.name}}</a></li>
                                 </ul>
                             </li>
-                            <li class="active" ng-repeat="page in pages"><a href={{page.path}}>{{page.name}}</a></li>
-                            <li class="active" ng-if="!isConnect"><a href='#/Login'>התחברות</a></li>
-                            <li class="active" ng-if="isConnect"><a href='#/Manage'>ניהול</a></li>
-                            <li class="active" ng-if="isConnect"><a  ng-click="Logout()" href=''>התנתק</a></li>
+                            <li class="" ng-repeat="page in pages"><a href={{page.path}}>{{page.name}}</a></li>
+                            <li class="" ng-if="!isConnect"><a href='#/Login'>התחברות</a></li>
+                            <li class="" ng-if="isConnect"><a href='#/Manage'>ניהול</a></li>
+                            <li class="" ng-if="isConnect"><a  ng-click="Logout()" href=''>התנתק</a></li>
                            <!-- <li class="active"><a href="index.html">דף הבית</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">המוצרים שלנו <i class="fa fa-angle-down"></i></a>

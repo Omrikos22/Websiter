@@ -4,8 +4,12 @@ html, body {
     height: calc(100%);
 }
 
-.del-navbar li {
+.del-navbar {
+    display:table-caption;
+}
 
+.del-navbar li {
+    float:right;
 }
 
 .del-footer {
