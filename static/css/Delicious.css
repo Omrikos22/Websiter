@@ -164,7 +164,9 @@ md-card {
 }
 
 .del-main-panel {
-    margin-top:3%;
+    border:1px solid black;
+    text-align:center;
+    margin-top:5%;
 }
 
 .del-md-card {
