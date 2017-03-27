@@ -75,9 +75,9 @@
                         <ul class="nav navbar-nav del-navbar" >
                             <li class=""><a href='#/Index'>דף הבית</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle">המוצרים שלנו <i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu del-products-dropdown">
-                                    <li ng-repeat="product in products"><a href='#/product/{{product.id}}'>{{product.name}}</a></li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">המוצרים שלנו <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="product in products" class="dropdown-product"><a href='#/product/{{product.id}}'>{{product.name}}</a></li>
                                 </ul>
                             </li>
                             <li class="" ng-repeat="page in pages"><a href={{page.path}}>{{page.name}}</a></li>

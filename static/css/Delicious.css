@@ -11,6 +11,10 @@ html, body {
 .del-navbar li {
     float:right;
 }
+.dropdown-product {
+    text-align:right;
+    float:none !important;
+}
 
 .del-footer {
     position: static;
