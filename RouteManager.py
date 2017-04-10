@@ -15,7 +15,7 @@ from server.Consts import GET_CONTENT_PAGES_QUERY, GET_PRODUCTS_QUERY, LOGIN_QUE
     UPDATE_CONTENT_PAGE_QUERY, DELETE_PAGE_CONTENT_QUERY, CONTENT_PAGE_TYPE_STRING
 
 app = Flask(__name__)
-db = MysqlAdapter("localhost", "root", "Omrikos22", "Fooder")
+db = MysqlAdapter("localhost", "root", "", "Fooder")
 
 
 class Routes:
@@ -80,7 +80,7 @@ class Routes:
             else:
                 image_file = request.files['image']
                 image_filename = image_file.filename
-                RequestHandlerUtils().upload_image(image_file, type)
+                RequestHandlerUtils().upload_image(image_file, CONTENT_PAGE_TYPE_STRING)
                 db.execute_query(INSERT_CONTENT_PAGE_QUERY.format(page_name, page_content, page_path, image_filename))
             return json.dumps({"success": True})
         except Exception as e:
@@ -131,7 +131,7 @@ class Routes:
             else:
                 image_file = request.files['image']
                 image_filename = image_file.filename
-                RequestHandlerUtils().upload_image(image_file)
+                RequestHandlerUtils().upload_image(image_file, CONTENT_PAGE_TYPE_STRING)
                 db.execute_query(UPDATE_CONTENT_PAGE_QUERY.format(page_content, image_filename, page_id))
             return json.dumps({"success": True})
         except:
