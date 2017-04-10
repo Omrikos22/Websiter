@@ -5,3 +5,4 @@ class Page:
         self.content = db_page_column[2]
         self.path = db_page_column[3]
         self.photo = db_page_column[4]
+        self.permanent = db_page_column[5]

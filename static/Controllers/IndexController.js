@@ -29,7 +29,19 @@
     $scope.GetPages = function () {
         CRUDService.GetPages().then(
             function success(response) {
-                $scope.pages = response.data.reverse();
+                pages = response.data;
+                $scope.pages = [];
+                pages.forEach(function(page){
+                    if(page.permanent == 0)
+                    {
+                        $scope.pages.push(page);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                });
+                $scope.pages = $scope.pages.reverse();
                 if($scope.pages.length > 0)
                 {
                     $scope.currentEditorContentPageId = $scope.pages[0].id;

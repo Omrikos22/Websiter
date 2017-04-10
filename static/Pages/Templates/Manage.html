@@ -1,11 +1,11 @@
-<div class="container del-manage-container">
-    <div id="boxes" style="margin-top:50px;" class="del-manage-panels">
-        <div class="panel panel-info del-panel" >
+<div class="container">
+    <div class="col-md-6">
+        <div class="panel panel-info " >
                 <div class="panel-heading">
                     <div class="panel-title">עדכון פרטים איישים</div>
                 </div>
                 <div style="padding-top:30px" class="panel-body" >
-                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                    <div style="display:none" id="login-alert" class="alert alert-danger col-md-6"></div>
                     <form id="loginform" class="form-horizontal" role="form" ng-submit="Login()">
                         <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -36,12 +36,14 @@
                         </form>
                     </div>
             </div>
-        <div class="panel panel-info del-panel" >
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-info" >
                 <div class="panel-heading">
                     <div class="panel-title">ערוך מוצר</div>
                 </div>
                 <div style="padding-top:30px" class="panel-body" >
-                    <div style="display:none" id="edit-product-alert" class="alert alert-danger col-sm-12"></div>
+                    <div style="display:none" id="edit-product-alert" class="alert alert-danger col-md-6"></div>
                     <form id="edit-product-form" name="updateProductForm" class="form-horizontal" role="form">
                         <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
@@ -65,7 +67,7 @@
                             <div style="margin-top:10px" class="form-group">
                                 <!-- Button -->
 
-                                <div class="col-sm-12 controls del-action-buttons">
+                                <div class="col-sm-12 controls">
                                   <a id="update-product-button" class="btn btn-success" ng-click="UpdateProduct()">עדכן</a>
                                   <a id="delete-product-button" class="btn btn-danger" ng-click="DeleteProduct()">מחק</a>
                                 </div>
@@ -77,13 +79,13 @@
                     </div>
             </div>
         </div>
-    <div id="boxes-2" style="margin-top:50px;" class="del-manage-panels">
-        <div class="panel panel-info del-panel" >
+    <div class="col-md-6">
+        <div class="panel panel-info " >
                 <div class="panel-heading">
                     <div class="panel-title">הוסף מוצר</div>
                 </div>
                 <div style="padding-top:30px" class="panel-body" >
-                    <div style="display:none" id="add-product-alert" class="alert alert-danger col-sm-12"></div>
+                    <div style="display:none" id="add-product-alert" class="alert alert-danger col-md-6"></div>
                     <form id="addproductform" class="form-horizontal" role="form">
                         <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
@@ -103,19 +105,21 @@
                             <div style="margin-top:10px" class="form-group">
                                 <!-- Button -->
 
-                                <div class="col-Ssm-12 controls">
+                                <div class="col-sm-12 controls">
                                   <a id="btn-add-product" class="btn btn-success" ng-click="AddProduct()">הוסף</a>
                                 </div>
                             </div>
                         </form>
                     </div>
             </div>
-        <div class="panel panel-info del-panel" >
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-info " >
                 <div class="panel-heading">
                     <div class="panel-title">הוסף דף תוכן</div>
                 </div>
                 <div style="padding-top:30px" class="panel-body" >
-                    <div style="display:none" id="add-content-page-alert" class="alert alert-danger col-sm-12"></div>
+                    <div style="display:none" id="add-content-page-alert" class="alert alert-danger col-md-6"></div>
                     <form id="addcontentpage" class="form-horizontal" role="form">
                         <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
@@ -135,7 +139,7 @@
                             <div style="margin-top:10px" class="form-group">
                                 <!-- Button -->
 
-                                <div class="col-Ssm-12 controls">
+                                <div class="col-sm-12 controls">
                                   <a id="btn-add-content-page" class="btn btn-success" ng-click="AddContentPage()">הוסף</a>
                                 </div>
                             </div>
@@ -143,13 +147,13 @@
                     </div>
             </div>
         </div>
-    <div id="boxes-3" style="margin-top:50px;" class="del-manage-panels">
-        <div class="panel panel-info del-panel" >
+    <div class="col-md-6">
+        <div class="panel panel-info" >
                 <div class="panel-heading">
                     <div class="panel-title">ערוך דף תוכן</div>
                 </div>
                 <div style="padding-top:30px" class="panel-body" >
-                    <div style="display:none" id="edit-content-page-alert" class="alert alert-danger col-sm-12"></div>
+                    <div style="display:none" id="edit-content-page-alert" class="alert alert-danger col-md-6"></div>
                     <form id="edit-content-page-form" name="updateProductForm" class="form-horizontal" role="form">
                         <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
@@ -173,7 +177,7 @@
                             <div style="margin-top:10px" class="form-group">
                                 <!-- Button -->
 
-                                <div class="col-sm-12 controls del-action-buttons">
+                                <div class="col-sm-12 controls">
                                   <a id="update-content-page-button" class="btn btn-success" ng-click="UpdatePageContent()">עדכן</a>
                                   <a id="delete-content=page-button" class="btn btn-danger" ng-click="DeletePageContent()">מחק</a>
                                 </div>

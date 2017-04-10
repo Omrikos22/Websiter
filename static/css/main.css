@@ -783,6 +783,7 @@ input.search-form:hover {
   background-color: #e6e6e6; 
   border:0 none;
   box-shadow:none;
+  margin-top:2%;
 }
 
 .panel-default>.panel-heading+.panel-collapse .panel-body{

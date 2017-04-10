@@ -44,7 +44,7 @@ option:empty
 
 .del-manage-container
 {
-    width:100%;
+    margin-top:2%;
 }
 
 .del-panel
@@ -52,11 +52,6 @@ option:empty
     width:45%;
     margin-right:2%;
     margin-left:5%;
-}
-
-.del-manage-panels
-{
-    display:flex;
 }
 
 .del-action-buttons a
@@ -162,12 +157,6 @@ md-card {
 
 .del-jk-carousel {
     margin-left:5%;
-}
-
-.del-main-panel {
-    border:1px solid black;
-    text-align:center;
-    margin-top:5%;
 }
 
 .del-md-card {
