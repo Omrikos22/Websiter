@@ -10,7 +10,7 @@
                     }
                     else
                     {
-                        $scope.pagePic = $scope.contentPagesImageRootDIr + page.photo;
+                        $scope.pagePic = $scope.contentPagesImageRootDir + page.photo;
                     }
                 }
             });
