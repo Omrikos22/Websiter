@@ -128,12 +128,19 @@ mainApp.controller('ManageController', function ($scope, Upload, $location, $loc
             })
     };
     $scope.DeletePageContent = function(){
-        CRUDService.DeletePageContent($scope.currentEditorContentPageId).then(
+        if($scope.currentEditorContentPageName == "דף הבית")
+        {
+            window.alert("אין למחוק את תוכן דף הבית");
+        }
+        else
+        {
+            CRUDService.DeletePageContent($scope.currentEditorContentPageId).then(
             function success(response) {
             location.reload();
             },
             function error(response) {
             })
+        }
     };
     $scope.GetProducts();
     $scope.GetPages();

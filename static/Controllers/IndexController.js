@@ -1,4 +1,5 @@
 ﻿mainApp.controller('IndexController', function ($scope, $rootScope, $localStorage, $location, CRUDService) {
+    $scope.homePageContent = "";
     $scope.productsImagesRootDir = "static/images/products/";
     $scope.contentPagesImageRootDir = "static/images/pages/";
     $scope.noImagePhoto = "static/images/noImg/NoPhoto.png";
@@ -31,10 +32,14 @@
                 $scope.pages = response.data.reverse();
                 if($scope.pages.length > 0)
                 {
-                    $scope.currentEditorContentPageId = $scope.pages[1].id;
-                    $scope.currentEditorContentPageName = $scope.pages[1].name;
-                    $scope.currentEditorContentPageContent = $scope.pages[1].content;
-                    $scope.currentEditorContentPagePicFile = $scope.pages[1].photo_src;
+                    $scope.currentEditorContentPageId = $scope.pages[0].id;
+                    $scope.currentEditorContentPageName = $scope.pages[0].name;
+                    $scope.currentEditorContentPageContent = $scope.pages[0].content;
+                    if($scope.currentEditorContentPageName == "דף הבית")
+                    {
+                        $scope.homePageContent = $scope.currentEditorContentPageContent;
+                    }
+                    $scope.currentEditorContentPagePicFile = $scope.pages[0].photo_src;
                 }
             },
             function error(response) {
@@ -47,10 +52,10 @@
                $scope.products = response.data;
                if($scope.products.length > 0)
                {
-                   $scope.currentEditorProductId = $scope.products[1].id;
-                   $scope.currentEditorProductName = $scope.products[1].name;
-                   $scope.currentEditorProductContent = $scope.products[1].content;
-                   $scope.currentEditorPicFile = $scope.products[1].photo_src;
+                   $scope.currentEditorProductId = $scope.products[0].id;
+                   $scope.currentEditorProductName = $scope.products[0].name;
+                   $scope.currentEditorProductContent = $scope.products[0].content;
+                   $scope.currentEditorPicFile = $scope.products[0].photo_src;
                }
             },
             function error(response) {
