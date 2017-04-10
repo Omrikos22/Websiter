@@ -99,6 +99,15 @@ option:empty
     border-radius:15px;
 }
 
+.del-content-page-pic {
+    margin-top:1%;
+    margin-bottom:1%;
+    margin-left:3%;
+    border:1px solid black;
+    border-radius:15px;
+    width:100%;
+}
+
 .del-product-area{
     margin-right:0px;
     margin-left:0px;
@@ -118,7 +127,7 @@ option:empty
 .del-page-content{
     width:50%;
     margin-right:25%;
-    margin-top:5%;
+    margin-top:2%;
     margin-left:25%;
     float:right;
     border:1px solid black;
@@ -161,4 +170,9 @@ md-card {
 
 .del-md-card {
     padding-bottom:10px;
+}
+
+.imwrapper
+{
+    width:80%;
 }
