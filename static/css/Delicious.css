@@ -54,6 +54,12 @@ option:empty
     margin-left:5%;
 }
 
+.del-main-panel
+{
+    border:1px solid black;
+    border-radius:5px;
+}
+
 .del-action-buttons a
 {
     margin-left:1%;
