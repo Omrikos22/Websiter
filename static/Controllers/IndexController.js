@@ -26,19 +26,37 @@
         location.reload();
     };
 
+    $scope.GetUnPermanentPages = function () {
+        CRUDService.GetPages().then(
+            function success(response) {
+                pages = response.data;
+                $scope.unPermanentPages = [];
+                pages.forEach(function(page){
+                    if(page.permanent == 0)
+                    {
+                        $scope.unPermanentPages.push(page);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                });
+                $scope.pages = $scope.pages.reverse();
+            },
+            function error(response) {
+            }
+        );
+    };
     $scope.GetPages = function () {
         CRUDService.GetPages().then(
             function success(response) {
                 pages = response.data;
                 $scope.pages = [];
                 pages.forEach(function(page){
-                    if(page.permanent == 0)
+                    $scope.pages.push(page);
+                    if(page.name == "דף הבית")
                     {
-                        $scope.pages.push(page);
-                    }
-                    else
-                    {
-                        return;
+                        $scope.homePageContent = page.content;
                     }
                 });
                 $scope.pages = $scope.pages.reverse();
@@ -47,10 +65,6 @@
                     $scope.currentEditorContentPageId = $scope.pages[0].id;
                     $scope.currentEditorContentPageName = $scope.pages[0].name;
                     $scope.currentEditorContentPageContent = $scope.pages[0].content;
-                    if($scope.currentEditorContentPageName == "דף הבית")
-                    {
-                        $scope.homePageContent = $scope.currentEditorContentPageContent;
-                    }
                     $scope.currentEditorContentPagePicFile = $scope.pages[0].photo_src;
                 }
             },

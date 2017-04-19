@@ -29,7 +29,7 @@
         <link rel="apple-touch-icon-precomposed" href="static/images/ico/apple-touch-icon-57-precomposed.png">
     </head><!--/head-->
 
-    <body class="homepage del-body" ng-controller="IndexController" ng-init="GetPages()">
+    <body class="homepage del-body" ng-controller="IndexController" ng-init="GetUnPermanentPages()">
         <header id="header">
           <!--  <div class="top-bar">
                 <div class="container">
@@ -80,7 +80,7 @@
                                     <li ng-repeat="product in products" class="dropdown-product"><a href='#/product/{{product.id}}'>{{product.name}}</a></li>
                                 </ul>
                             </li>
-                            <li class="" ng-repeat="page in pages"><a href=#/pages/{{page.id}}>{{page.name}}</a></li>
+                            <li class="" ng-repeat="page in unPermanentPages"><a href=#/pages/{{page.id}}>{{page.name}}</a></li>
                             <li class="" ng-if="!isConnect"><a href='#/Login'>התחברות</a></li>
                             <li class="" ng-if="isConnect"><a href='#/Manage'>ניהול</a></li>
                             <li class="" ng-if="isConnect"><a  ng-click="Logout()" href=''>התנתק</a></li>
