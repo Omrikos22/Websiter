@@ -1,4 +1,3 @@
-from translate import translator
 import json
 from flask import Flask
 from flask import request
@@ -70,9 +69,10 @@ class Routes:
     @staticmethod
     def add_content_page():
         page_name = request.form["name"].encode('utf-8')
-        page_name_english = translator('iw', 'en', page_name)[TRANSLATE_RESULTS_INDEX][TRANSLATE_SPECIFIC_RESULT_INDEX][TRANSLATED_WORD_INDEX]
+        #page_name_english = translator('iw', 'en', page_name)[TRANSLATE_RESULTS_INDEX][TRANSLATE_SPECIFIC_RESULT_INDEX][TRANSLATED_WORD_INDEX]
         page_content = request.form["content"].encode('utf-8')
-        page_path = CONTENT_PAGES_ROOT_PATH + page_name_english
+        #page_path = CONTENT_PAGES_ROOT_PATH + page_name_english
+        page_path = None
         try:
             if not request.files.__contains__('image'):
                 image = request.form['image']

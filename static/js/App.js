@@ -18,7 +18,7 @@ mainApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'static/Pages/Templates/Manage.html',
         controller: 'ManageController'
     })
-    .when('/pages/:name', {
+    .when('/pages/:id', {
         templateUrl: 'static/Pages/Templates/GenericContentPage.html',
         controller: 'GenericContentPageController'
     })

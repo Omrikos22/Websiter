@@ -1,7 +1,8 @@
 ﻿mainApp.controller('GenericContentPageController', function ($scope, $localStorage, $routeParams, CRUDService) {
+      $scope.currentPageContentId = $routeParams.id;
       $scope.GetPageData = function() {
             $scope.pages.forEach(function(page){
-                if(page.path == window.location.hash)
+                if(page.id == $scope.currentPageContentId)
                 {
                     $scope.currentPageName = page.name;
                     $scope.currentPageContent = page.content;
