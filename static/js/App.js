@@ -4,7 +4,7 @@ mainApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
     .when('/Index', {
         templateUrl: 'static/Pages/Templates/home.html',
-        controller: 'GenericContentPageController'
+        controller: 'IndexController'
     })
     .when('/Products', {
         templateUrl: 'static/Pages/Templates/products.html',
