@@ -16,7 +16,7 @@
                 }
             });
       }
-      $scope.GetPageData()
       $scope.GetPages();
+      $scope.GetPageData()
       $scope.GetProducts();
 });
