@@ -140,9 +140,14 @@ option:empty
     border-radius:15px;
 }
 
-.del-content-subject{
+.del-content-page-subject{
     padding:5px;
 }
+
+.del-content-page-content{
+    white-space:pre-line;
+}
+
 
 .del-ng-view{
     height:inherit;
