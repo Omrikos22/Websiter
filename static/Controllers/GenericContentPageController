@@ -16,7 +16,13 @@
                 }
             });
       }
-      $scope.GetPages();
-      $scope.GetPageData()
-      $scope.GetProducts();
+      CRUDService.GetPages().then(
+            function success(response) {
+                pages = response.data;
+                $scope.GetPageData();
+                $scope.GetProducts();
+            },
+            function error(response) {
+            }
+        );
 });
