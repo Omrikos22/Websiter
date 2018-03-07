@@ -16,6 +16,12 @@ mainApp.controller('ProductViewController', function ($scope, $localStorage, $ro
                 }
             });
       }
-      $scope.GetProducts()
-      $scope.GetProductData()
+      CRUDService.GetAllProducts().then(
+            function success(response) {
+               $scope.products = response.data;
+               $scope.GetProductData()
+               },
+            function error(response) {
+            }
+        );
 });
