@@ -16,5 +16,6 @@ mainApp.controller('ProductViewController', function ($scope, $localStorage, $ro
                 }
             });
       }
+      $scope.GetProducts()
       $scope.GetProductData()
 });
