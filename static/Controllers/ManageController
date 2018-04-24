@@ -142,6 +142,15 @@ mainApp.controller('ManageController', function ($scope, Upload, $location, $loc
             })
         }
     };
+    $scope.tinymceOptions = {
+    onChange: function(e) {
+      // put logic here for keypress and cut/paste changes
+    },
+    inline: false,
+    plugins : 'advlist autolink link image lists charmap print preview',
+    skin: 'lightgray',
+    theme : 'modern'
+    };
     $scope.GetProducts();
     $scope.GetPages();
     $scope.GetUserDetails();

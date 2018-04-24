@@ -72,6 +72,17 @@
             }
         );
     }
+    $scope.OpenModal = function() {
+        $("#myModal").modal('show');
+    };
+    $scope.ContactUs = function() {
+            CRUDService.ContactUs($scope.ContactFormName, $scope.ContactCustomerMail, $scope.ContactPhone, $scope.ContactCity, $scope.ContactSubject, $scope.ContactMessage).then(
+            function success(response) {
+            location.reload();
+            },
+            function error(response) {
+            })
+    }
     $scope.GetProducts = function() {
             CRUDService.GetAllProducts().then(
             function success(response) {

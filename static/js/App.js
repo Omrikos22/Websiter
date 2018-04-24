@@ -1,4 +1,4 @@
-﻿var mainApp = angular.module('Fooder', ['ngRoute', 'ngAnimate', 'ngMessages', 'ngStorage', 'ngFileUpload', 'ngMaterial', 'jkAngularCarousel']);
+﻿var mainApp = angular.module('Fooder', ['ngRoute', 'ngAnimate', 'ngMessages', 'ngStorage', 'ngFileUpload', 'ngMaterial', 'jkAngularCarousel', 'ui.tinymce']);
 
 mainApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -30,3 +30,4 @@ mainApp.config(['$routeProvider', function ($routeProvider) {
         redirectTo: '/Index'
     });
 }])
+
