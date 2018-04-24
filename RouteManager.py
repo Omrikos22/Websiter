@@ -1,4 +1,5 @@
 import json
+import smtplib
 from flask import Flask
 from flask import request
 from uuid import uuid4
@@ -155,13 +156,37 @@ class Routes:
         except:
             return json.dumps({"success": False})
 
+    @staticmethod
+    def contact_us():
+        name = request.args["name"]
+        mail = request.args["mail"]
+        phone = request.args["phone"]
+        city = request.args["city"]
+        subject = request.args["subject"]
+        message = request.args["message"]
+        manager_mail = "avrahamfisher@gmail.com"
+        try:
+            server = smtplib.SMTP('smtp.gmail.com:587')
+            server.ehlo()
+            server.starttls()
+            msg = "\r\n".join([
+                "From: user_me@gmail.com",
+                "To: user_you@gmail.com",
+                "Subject: Just a message",
+                "",
+                "Why, oh why".format()
+            ])
+            return json.dumps({"success": True})
+        except:
+            return json.dumps({"success": False})
+
 
 def run_server(port):
     app.add_url_rule('/', view_func=Routes().index)
-    app.add_url_rule('/GetPages', view_func=Routes().get_content_pages, methods=['POST'])
-    app.add_url_rule('/GetAllProducts', view_func=Routes().get_all_products, methods=['POST'])
+    app.add_url_rule('/GetPages', view_func=Routes().get_content_pages, methods=['GET'])
+    app.add_url_rule('/GetAllProducts', view_func=Routes().get_all_products, methods=['GET'])
     app.add_url_rule('/Login', view_func=Routes().login, methods=['POST'])
-    app.add_url_rule('/GetUserDetails', view_func=Routes().get_user_details, methods=['POST'])
+    app.add_url_rule('/GetUserDetails', view_func=Routes().get_user_details, methods=['GET'])
     app.add_url_rule('/UpdateUserDetails', view_func=Routes().update_user_details, methods=['POST'])
     app.add_url_rule('/AddContentPage', view_func=Routes().add_content_page, methods=['POST'])
     app.add_url_rule('/AddProduct', view_func=Routes().add_product, methods=['POST'])
@@ -169,4 +194,5 @@ def run_server(port):
     app.add_url_rule('/UpdateProduct', view_func=Routes().update_product, methods=['POST'])
     app.add_url_rule('/DeleteProduct', view_func=Routes().delete_product, methods=['POST'])
     app.add_url_rule('/DeletePageContent', view_func=Routes().delete_page_content, methods=['POST'])
-    app.run(host="0.0.0.0", port=port)
+    while True:
+        app.run(host="0.0.0.0", port=port, threaded=True)

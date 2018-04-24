@@ -2,7 +2,7 @@ mainApp.factory('CRUDService', function ($http, Upload, $q, $localStorage) {
     return {
         GetPages: function () {
             var deferred = $q.defer();
-            $http.post('/GetPages').then(
+            $http.get('/GetPages').then(
             function success(data, status, headers, config) {
                 deferred.resolve(data, status, headers, config);
             }, function error(data, status, headers, config) {
@@ -12,7 +12,7 @@ mainApp.factory('CRUDService', function ($http, Upload, $q, $localStorage) {
         },
         GetAllProducts: function () {
             var deferred = $q.defer();
-            $http.post('/GetAllProducts').then(
+            $http.get('/GetAllProducts').then(
             function success(data, status, headers, config) {
                 deferred.resolve(data, status, headers, config);
             }, function error(data, status, headers, config) {
@@ -33,7 +33,7 @@ mainApp.factory('CRUDService', function ($http, Upload, $q, $localStorage) {
         },
         GetUserDetails: function (username) {
             var deferred = $q.defer();
-            $http({method: 'POST', url:'/GetUserDetails', params: {"username": username}}).then(
+            $http({method: 'GET', url:'/GetUserDetails', params: {"username": username}}).then(
             function success(data, status, headers, config) {
                 deferred.resolve(data, status, headers, config);
             }, function error(data, status, headers, config) {
@@ -136,6 +136,16 @@ mainApp.factory('CRUDService', function ($http, Upload, $q, $localStorage) {
         DeletePageContent: function (id) {
             var deferred = $q.defer();
             $http({method: 'POST', url:'/DeletePageContent', params: {"id": id}}).then(
+            function success(data, status, headers, config) {
+                deferred.resolve(data, status, headers, config);
+            }, function error(data, status, headers, config) {
+                deferred.reject(data, status, headers, config);
+            });
+            return deferred.promise;
+        },
+        ContactUs: function (name, mail, phone, city, subject, message) {
+            var deferred = $q.defer();
+            $http({method: 'POST', url:'/ContactUs', params: {"name": name, "mail": mail, "phone": phone, "city": city, "subject": subject, "message": message}}).then(
             function success(data, status, headers, config) {
                 deferred.resolve(data, status, headers, config);
             }, function error(data, status, headers, config) {
