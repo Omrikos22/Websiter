@@ -1,5 +1,6 @@
 import json
 import smtplib
+from gevent import wsgi
 from flask import Flask
 from flask import request
 from uuid import uuid4
@@ -15,7 +16,7 @@ from server.Consts import GET_CONTENT_PAGES_QUERY, GET_PRODUCTS_QUERY, LOGIN_QUE
     UPDATE_CONTENT_PAGE_QUERY, DELETE_PAGE_CONTENT_QUERY, CONTENT_PAGE_TYPE_STRING
 
 app = Flask(__name__)
-db = MysqlAdapter("localhost", "root", "", "Fooder")
+db = MysqlAdapter("localhost", "root", "Omrikos*22", "Fooder")
 
 
 class Routes:
@@ -194,5 +195,6 @@ def run_server(port):
     app.add_url_rule('/UpdateProduct', view_func=Routes().update_product, methods=['POST'])
     app.add_url_rule('/DeleteProduct', view_func=Routes().delete_product, methods=['POST'])
     app.add_url_rule('/DeletePageContent', view_func=Routes().delete_page_content, methods=['POST'])
-    while True:
-        app.run(host="0.0.0.0", port=port, threaded=True)
+    server = wsgi.WSGIServer(('0.0.0.0', port), app)
+    server.serve_forever()
+    #app.run(host="0.0.0.0", port=port, threaded=True)
