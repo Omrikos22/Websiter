@@ -1,6 +1,5 @@
 import os
 from server.Consts import PRODUCTS_IMAGE_ROOT_DIR, CONTENT_PAGES_IMAGE_ROOT_DIR, CONTENT_PAGE_TYPE_STRING
-import cv2
 
 
 class RequestHandlerUtils:
@@ -16,7 +15,7 @@ class RequestHandlerUtils:
         image_filename = image_file.filename
         try:
             image_buffer = image_file.read()
-            image = cv2.imread(image_buffer)
-            cv2.imwrite(os.path.join(image_root_dir, image_filename), image)
+            with open(os.path.join(image_root_dir, image_filename), 'wb') as f:
+                f.write(image_buffer)
         except:
             return False
